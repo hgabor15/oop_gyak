@@ -11,7 +11,7 @@ public class Employee {
 	}
 	
 	public String displayInfo() {
-		return "Név: " + name + ", fizetés: " + salary;
+		return "Név: " + name + ", fizetés: " + salary + ", adó: " + getTax();
 	}
 	
 	// b) rész
@@ -33,5 +33,33 @@ public class Employee {
 			this.salary = salary;		
 	}
 	
+	// c) rész
+	public boolean isInRange(int lower, int upper) {
+		if(salary >= lower && salary <= lower)
+			return true;
+		return false;
+	}
+	
+	public double getTax() {
+		return Math.round(salary*0.16);
+	}
+	
+	public boolean hasGreaterSalary(Employee e) {
+		if (this.salary > e.salary)
+			return true;
+		else return false;
+	}
+	
+	public Employee compareSalary(Employee e) {
+		if (this.salary > e.salary)
+			return this;
+		return e;
+	}
+	
+	public static Employee compareSalary(Employee e1, Employee e2) {
+		if (e1.salary > e2.salary)
+			return e1;
+		return e2;
+	}
 
 }

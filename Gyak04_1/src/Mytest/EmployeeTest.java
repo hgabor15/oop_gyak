@@ -6,27 +6,46 @@ import myClasses.Employee;
 
 		public static void main(String[] args) {
 			
-			Employee emp1 = new Employee();
-			emp1.setName("John");
-			emp1.setSalary(10000);
+			Employee[] empArray = new Employee[5];
 			
-			Employee emp2 = new Employee();
-			emp2.setName("Jane");
-			emp2.setSalary(12000);
+			for(int i=0; i<empArray.length; i++) {
+				empArray[i] = new Employee();
+				empArray[i].setName("Emp_" + (i+1));
+				empArray[i].setSalary((i+1)*1000+10000);
+				//System.out.println(empArray[i].displayInfo());
+			}
 			
-			System.out.println(emp1.displayInfo());
-			System.out.println(emp2.displayInfo());
+			listArray(empArray);
+			System.out.println("Best paid: " + empArray[maxSalary(empArray)].getName());
 			
-			boolean res = emp1.hasGreaterSalary(emp2);
-			if (res)
-				System.out.println(emp1.getName() + " fizetése nagyobb");
-			else
-				System.out.println(emp1.getName() + " fizetése kisebb");
+			//avgSalary(empArray);
 			
-			Employee e_res = emp1.compareSalary(emp2);
-			System.out.println(e_res.getName());
-			
-			System.out.println(Employee.compareSalary(emp1, emp2).getName());
-			
+			int lower = 12000;
+			int upper = 14000;
+			System.out.println("Num of employees: " + countEmp(empArray, lower, upper));
+		}
+		
+		private static int countEmp(Employee[] array, int lower, int upper) {
+			int counter = 0;
+			for(Employee item : array) {
+				if (item.isInRange(lower, upper))
+					counter++;
+			}
+			return counter;
+		}
+		
+		private static void listArray(Employee[] array) {
+			for(Employee item : array) {
+				System.out.println(item.displayInfo());
+			}
+		}
+		
+		private static int maxSalary(Employee[] array) {
+			int maxIndex = 0;
+			for(int i=0; i<array.length; i++) {
+				if (array[i].getSalary() > array[maxIndex].getSalary())
+					maxIndex = i;
+					}
+			return maxIndex;
 		}
 }

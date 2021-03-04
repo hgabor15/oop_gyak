@@ -35,7 +35,7 @@ public class Employee {
 	
 	// c) rész
 	public boolean isInRange(int lower, int upper) {
-		if(salary >= lower && salary <= lower)
+		if(salary >= lower && salary <= upper)
 			return true;
 		return false;
 	}
